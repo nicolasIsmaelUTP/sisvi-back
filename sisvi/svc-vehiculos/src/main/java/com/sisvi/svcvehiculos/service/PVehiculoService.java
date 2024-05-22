@@ -14,4 +14,6 @@ public interface PVehiculoService {
 
     void eliminarVehiculoPorId(Long id);
 
+    Vehiculo obtenerPorPlaca(String placa);
+
 }

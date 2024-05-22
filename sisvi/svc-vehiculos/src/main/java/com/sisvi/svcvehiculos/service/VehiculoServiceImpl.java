@@ -33,5 +33,16 @@ public class VehiculoServiceImpl implements PVehiculoService{
     public void eliminarVehiculoPorId(Long id) {
         vehiculoRepository.deleteById(id);
     }
+
+    @Override
+    public Vehiculo obtenerPorPlaca(String placa) {
+        List<Vehiculo> vehiculos = (List<Vehiculo>) vehiculoRepository.findAll();
+        for (Vehiculo vehiculo : vehiculos) {
+            if (vehiculo.getPlaca().equals(placa)) {
+                return vehiculo;
+            }
+        }
+        return null;
+    }
     
 }

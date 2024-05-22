@@ -46,5 +46,12 @@ public class VehiculoController {
     public void eliminarVehiculoPorId(@PathVariable Long id) {
         vehiculoService.eliminarVehiculoPorId(id);
     }
+
+    // Obtener vehiculo por placa
+    @GetMapping("/placa/{placa}")
+    public ResponseEntity<?> obtenerPorPlaca(@PathVariable String placa) {
+        Vehiculo vehiculo = vehiculoService.obtenerPorPlaca(placa);
+        return ResponseEntity.ok(vehiculo);
+    }
     
 }
