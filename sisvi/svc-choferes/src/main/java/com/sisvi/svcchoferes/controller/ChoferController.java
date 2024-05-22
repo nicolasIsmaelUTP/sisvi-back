@@ -43,4 +43,16 @@ public class ChoferController {
         choferService.eliminarChoferPorId(id);
     }
 
+    // Obtener por DNI
+    @GetMapping("/dni/{dni}")
+    public ResponseEntity<?> obtenerPorDni(@PathVariable String dni) {
+        return ResponseEntity.ok(choferService.obtenerPorDni(dni));
+    }
+
+    // Obtener por licencia de conducir
+    @GetMapping("/licencia/{licenciaConducir}")
+    public ResponseEntity<?> obtenerPorLicenciaConducir(@PathVariable String licenciaConducir) {
+        return ResponseEntity.ok(choferService.obtenerPorLicenciaConducir(licenciaConducir));
+    }
+
 }

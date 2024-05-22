@@ -33,5 +33,27 @@ public class ChoferServiceImpl implements PChoferService{
     public void eliminarChoferPorId(Long id) {
         choferRepository.deleteById(id);
     }
+
+    @Override
+    public Chofer obtenerPorDni(String dni) {
+        List<Chofer> choferes = (List<Chofer>) choferRepository.findAll();
+        for (Chofer chofer : choferes) {
+            if (chofer.getDni().equals(dni)) {
+                return chofer;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Chofer obtenerPorLicenciaConducir(String licenciaConducir) {
+        List<Chofer> choferes = (List<Chofer>) choferRepository.findAll();
+        for (Chofer chofer : choferes) {
+            if (chofer.getLicenciaConducir().equals(licenciaConducir)) {
+                return chofer;
+            }
+        }
+        return null;
+    }
     
 }

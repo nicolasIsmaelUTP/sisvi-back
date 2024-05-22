@@ -14,4 +14,7 @@ public interface PChoferService {
 
     void eliminarChoferPorId(Long id);
 
+    Chofer obtenerPorDni(String dni);
+
+    Chofer obtenerPorLicenciaConducir(String licenciaConducir);
 }
