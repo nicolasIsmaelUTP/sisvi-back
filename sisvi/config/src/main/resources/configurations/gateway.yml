@@ -1,0 +1,18 @@
+# eureka:
+#   client:
+#     registerWithEureka: false
+
+server:
+  port: 8065
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: vehiculos
+            uri: http://localhost:8063
+            predicates:
+              - Path=/api/vehiculos/**
