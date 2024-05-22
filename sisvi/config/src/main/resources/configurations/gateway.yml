@@ -3,7 +3,7 @@
 #     registerWithEureka: false
 
 server:
-  port: 8065
+  port: 8069
 
 spring:
   application:
@@ -16,3 +16,7 @@ spring:
             uri: http://localhost:8063
             predicates:
               - Path=/api/vehiculos/**
+          - id: choferes
+            uri: http://localhost:8064
+            predicates:
+              - Path=/api/choferes/**
