@@ -18,6 +18,7 @@
 
 	<modules>
 		<module>gateway</module>
+		<module>eureka</module>
 	</modules>
 
 	<properties>
