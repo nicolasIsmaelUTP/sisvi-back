@@ -4,9 +4,9 @@ INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codig
 
 INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (20, 1, '2023-03-20', 'OLFL003', 'Filtro de aceite', 'MANN');
 
-INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (10, 0, '2021-07-25', 'SPK004', 'Bujías', 'NGK');
+INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (10, 0, '2021-07-25', 'SPK004', 'Bujias', 'NGK');
 
-INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (50, 1, '2022-12-01', 'BT005', 'Batería 12V', 'Exide');
+INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (50, 1, '2022-12-01', 'BT005', 'Bateria 12V', 'Exide');
 
 INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (25, 1, '2023-02-15', 'OTL006', 'Filtro de combustible', 'Delphi');
 
@@ -14,6 +14,6 @@ INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codig
 
 INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (8, 1, '2022-10-05', 'HDR008', 'Faros delanteros', 'Philips');
 
-INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (40, 1, '2023-04-18', 'BLT009', 'Correa de distribución', 'Gates');
+INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (40, 1, '2023-04-18', 'BLT009', 'Correa de distribucion', 'Gates');
 
 INSERT INTO `repuestos` (`cantidad_stock`, `estado`, `fecha_fabricacion`, `codigo_interno`, `descripcion`, `fabricante`) VALUES (12, 0, '2021-11-30', 'RDT010', 'Radiador', 'Denso');
