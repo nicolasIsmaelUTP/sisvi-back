@@ -42,4 +42,9 @@ public class MantSalidaController {
     public void eliminarMantenimientoSalidaPorId(@PathVariable Long id) {
         mantSalidaService.eliminarMantenimientoSalidaPorId(id);
     }
+
+    @GetMapping("/listar/vehiculo/{idVehiculo}")
+    public ResponseEntity<?> obtenerMantenimientosSalidaPorVehiculo(@PathVariable Long idVehiculo) {
+        return ResponseEntity.ok(mantSalidaService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo));
+    }
 }

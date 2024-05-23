@@ -9,7 +9,7 @@ import com.sisvi.svc_mantenimiento.entities.MantenimientoSalida;
 import com.sisvi.svc_mantenimiento.persistence.MantSalidaRepository;
 
 @Service
-public class MantSalidaServiceImpl implements PMantSalidaService{
+public class MantSalidaServiceImpl implements PMantSalidaService {
 
     @Autowired
     private MantSalidaRepository mantenimientoSalidaRepository;
@@ -33,5 +33,24 @@ public class MantSalidaServiceImpl implements PMantSalidaService{
     public void eliminarMantenimientoSalidaPorId(Long id) {
         mantenimientoSalidaRepository.deleteById(id);
     }
-    
+
+    /**
+     * Obtiene una lista de los mantenimientos de salida asociados a un vehículo
+     * específico.
+     *
+     * @param idVehiculo El ID del vehículo.
+     * @return Una lista de los mantenimientos de salida asociados al vehículo.
+     */
+    @Override
+    public List<MantenimientoSalida> obtenerMantenimientosSalidaPorVehiculo(Long idVehiculo) {
+
+        List<MantenimientoSalida> mantenimientosSalida = obtenerTodosMantenimientosSalida();
+
+        List<MantenimientoSalida> mantenimientosSalidaPorVehiculo = mantenimientosSalida.stream()
+                .filter(mantenimientoSalida -> mantenimientoSalida.getMantenimientoIngreso()
+                        .getIdVehiculo() == idVehiculo)
+                .toList();
+        return mantenimientosSalidaPorVehiculo;
+    }
+
 }

@@ -12,4 +12,7 @@ public interface PMantSalidaService {
     MantenimientoSalida guardarMantenimientoSalida(MantenimientoSalida mantenimientoSalida);
 
     void eliminarMantenimientoSalidaPorId(Long id);
+
+    // Filtrar por id de vehiculo
+    List<MantenimientoSalida> obtenerMantenimientosSalidaPorVehiculo(Long idVehiculo);
 }
