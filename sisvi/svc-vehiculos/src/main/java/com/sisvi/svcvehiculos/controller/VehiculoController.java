@@ -53,5 +53,11 @@ public class VehiculoController {
         Vehiculo vehiculo = vehiculoService.obtenerPorPlaca(placa);
         return ResponseEntity.ok(vehiculo);
     }
+
+    // Obtener mantenimientos de salida por vehiculo
+    @GetMapping("/mantenimientos-salida/{idVehiculo}")
+    public ResponseEntity<?> obtenerMantenimientosSalidaPorVehiculo(@PathVariable Long idVehiculo) {
+        return ResponseEntity.ok(vehiculoService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo));
+    }
     
 }
