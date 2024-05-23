@@ -22,6 +22,7 @@
 		<module>config</module>
 		<module>svc-vehiculos</module>
 		<module>svc-choferes</module>
+		<module>svc-repuestos</module>
 	</modules>
 
 	<properties>
