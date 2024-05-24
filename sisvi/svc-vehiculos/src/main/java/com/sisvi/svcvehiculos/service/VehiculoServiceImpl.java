@@ -1,18 +1,16 @@
 package com.sisvi.svcvehiculos.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.sisvi.svcvehiculos.client.RMantSalidaService;
-import com.sisvi.svcvehiculos.dto.MantSalidaDTO;
 import com.sisvi.svcvehiculos.entities.Vehiculo;
 import com.sisvi.svcvehiculos.http.response.MantSalidaPorVehiculoResponse;
 import com.sisvi.svcvehiculos.persistence.VehiculoRepository;
 
 @Service
-public class VehiculoServiceImpl implements PVehiculoService{
+public class VehiculoServiceImpl implements PVehiculoService {
 
     @Autowired
     private VehiculoRepository vehiculoRepository;
@@ -56,14 +54,16 @@ public class VehiculoServiceImpl implements PVehiculoService{
         // Consultar vehiculo por id
         Vehiculo vehiculo = vehiculoRepository.findById(idVehiculo).orElse(null);
 
-        // Obtener mantenimientos de salida
-        List<MantSalidaDTO> mantenimientosSalida = rMantSalidaService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo);
+        ResponseEntity<?> response = rMantSalidaService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo);
+
+        //response.getBody()
+        List<?> list = (List<?>) response.getBody();
 
         return MantSalidaPorVehiculoResponse.builder()
                 .id(vehiculo.getId())
                 .placa(vehiculo.getPlaca())
-                .mantenimientosSalida(mantenimientosSalida)
+                .mantenimientosSalida(list)
                 .build();
     }
-    
+
 }

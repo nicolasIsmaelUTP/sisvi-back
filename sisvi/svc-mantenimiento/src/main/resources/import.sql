@@ -22,7 +22,7 @@ INSERT INTO `mantenimiento_ingreso` (`estado`, `kilometraje_ingresado`, `fecha_i
 
 INSERT INTO `mantenimiento_ingreso` (`estado`, `kilometraje_ingresado`, `fecha_ingreso`, `id_chofer`, `id_vehiculo`, `observaciones`) VALUES (1, 30000, '2024-05-21', 2, 2, 'Cambio de filtro de aire');
 
-INSERT INTO `mantenimiento_ingreso` (`estado`, `kilometraje_ingresado`, `fecha_ingreso`, `id_chofer`, `id_vehiculo`, `observaciones`) VALUES (1, 40000, '2024-05-22', 2, 2, 'Revisión de sistema de escape');
+INSERT INTO `mantenimiento_ingreso` (`estado`, `kilometraje_ingresado`, `fecha_ingreso`, `id_chofer`, `id_vehiculo`, `observaciones`) VALUES (1, 40000, '2024-05-22', 2, 2, 'Revision de sistema de escape');
 
 -- Mantenimiento Salida
 
