@@ -56,7 +56,6 @@ public class VehiculoServiceImpl implements PVehiculoService {
 
         ResponseEntity<?> response = rMantSalidaService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo);
 
-        //response.getBody()
         List<?> list = (List<?>) response.getBody();
 
         return MantSalidaPorVehiculoResponse.builder()

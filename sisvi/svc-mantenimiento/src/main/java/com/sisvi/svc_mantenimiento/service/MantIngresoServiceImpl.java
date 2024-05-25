@@ -9,7 +9,7 @@ import com.sisvi.svc_mantenimiento.entities.MantenimientoIngreso;
 import com.sisvi.svc_mantenimiento.persistence.MantIngresoRepository;
 
 @Service
-public class MantIngresoServiceImpl implements PMantIngresoService{
+public class MantIngresoServiceImpl implements PMantIngresoService {
 
     @Autowired
     private MantIngresoRepository mantenimientoIngresoRepository;
@@ -33,5 +33,22 @@ public class MantIngresoServiceImpl implements PMantIngresoService{
     public void eliminarMantenimientoIngresoPorId(Long id) {
         mantenimientoIngresoRepository.deleteById(id);
     }
-    
+
+    /**
+     * Obtiene una lista de los mantenimientos de ingreso asociados a un vehículo específico.
+     *
+     * @param idVehiculo El ID del vehículo para el cual se desean obtener los mantenimientos de ingreso.
+     * @return Una lista de los mantenimientos de ingreso asociados al vehículo especificado.
+     */
+    @Override
+    public List<MantenimientoIngreso> obtenerMantenimientosIngresoPorVehiculo(Long idVehiculo) {
+
+        List<MantenimientoIngreso> mantenimientosIngreso = obtenerTodosMantenimientosIngreso();
+
+        List<MantenimientoIngreso> mantenimientosIngresoPorVehiculo = mantenimientosIngreso.stream()
+                .filter(mantenimientoIngreso -> mantenimientoIngreso.getIdVehiculo() == idVehiculo)
+                .toList();
+        return mantenimientosIngresoPorVehiculo;
+    }
+
 }

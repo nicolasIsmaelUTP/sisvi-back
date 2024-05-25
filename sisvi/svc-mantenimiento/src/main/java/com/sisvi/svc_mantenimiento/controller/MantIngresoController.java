@@ -42,4 +42,10 @@ public class MantIngresoController {
     public void eliminarMantenimientoIngresoPorId(@PathVariable Long id) {
         mantIngresoService.eliminarMantenimientoIngresoPorId(id);
     }
+
+    @GetMapping("/listar/vehiculo/{idVehiculo}")
+    public ResponseEntity<?> obtenerMantenimientosIngresoPorVehiculo(@PathVariable Long idVehiculo) {
+        return ResponseEntity.ok(mantIngresoService.obtenerMantenimientosIngresoPorVehiculo(idVehiculo));
+    }
+    
 }

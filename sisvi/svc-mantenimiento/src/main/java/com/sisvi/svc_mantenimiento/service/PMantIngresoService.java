@@ -13,4 +13,7 @@ public interface PMantIngresoService {
     MantenimientoIngreso guardarMantenimientoIngreso(MantenimientoIngreso mantenimientoIngreso);
 
     void eliminarMantenimientoIngresoPorId(Long id);
+
+    // Filtrar por id de vehiculo
+    List<MantenimientoIngreso> obtenerMantenimientosIngresoPorVehiculo(Long idVehiculo);
 }
