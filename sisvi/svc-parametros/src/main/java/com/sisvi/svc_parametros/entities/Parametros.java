@@ -24,14 +24,14 @@ public class Parametros {
     private Long id;
     private Date fecha;
     private Long idVehiculo;
-    private int tempMotorC;
-    private int presAdmisionKpa;
-    private int rpmMotor;
-    private int velocidadKmh;
-    private int tempAireAdmC;
-    private double flujoAireGps;
-    private double posicionAcelerador;
-    private int tempAmbienteC;
-    private double posicionPedalD;
-    private double posicionPedalE;
+    private Integer tempMotorC;
+    private Integer presAdmisionKpa;
+    private Integer rpmMotor;
+    private Integer velocidadKmh;
+    private Integer tempAireAdmC;
+    private Double flujoAireGps;
+    private Double posicionAcelerador;
+    private Integer tempAmbienteC;
+    private Double posicionPedalD;
+    private Double posicionPedalE;
 }
