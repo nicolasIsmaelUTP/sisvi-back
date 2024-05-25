@@ -24,6 +24,7 @@
 		<module>svc-choferes</module>
 		<module>svc-repuestos</module>
 		<module>svc-mantenimiento</module>
+		<module>svc-parametros</module>
 	</modules>
 
 	<properties>
