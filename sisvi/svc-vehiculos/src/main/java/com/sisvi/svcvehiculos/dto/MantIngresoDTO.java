@@ -11,12 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MantSalidaDTO {
-    private Date fechaSalida;
-    private int nivelDanio;
-    private int nivelCombustible;
-    private int nivelAceite;
-    private int kilometrajeSalida;
+public class MantIngresoDTO {
+    private Long idVehiculo;
+    private Long idChofer;
+    private Date fechaIngreso;
+    private int kilometrajeIngresado;
     private String observaciones;
     private boolean estado;
 }

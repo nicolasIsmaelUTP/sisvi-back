@@ -3,6 +3,7 @@ package com.sisvi.svcvehiculos.service;
 import java.util.List;
 
 import com.sisvi.svcvehiculos.entities.Vehiculo;
+import com.sisvi.svcvehiculos.http.response.MantIngresoPorVehiculoResponse;
 import com.sisvi.svcvehiculos.http.response.MantSalidaPorVehiculoResponse;
 
 public interface PVehiculoService {
@@ -18,4 +19,7 @@ public interface PVehiculoService {
     Vehiculo obtenerPorPlaca(String placa);
 
     MantSalidaPorVehiculoResponse obtenerMantenimientosSalidaPorVehiculo(Long idVehiculo);
+
+    MantIngresoPorVehiculoResponse obtenerMantenimientosIngresoPorVehiculo(Long idVehiculo);
+    
 }

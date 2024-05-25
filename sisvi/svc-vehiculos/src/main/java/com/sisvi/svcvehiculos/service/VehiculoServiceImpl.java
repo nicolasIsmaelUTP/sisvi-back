@@ -4,8 +4,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.sisvi.svcvehiculos.client.RMantSalidaService;
+import com.sisvi.svcvehiculos.client.RMantService;
+import com.sisvi.svcvehiculos.dto.MantIngresoDTO;
 import com.sisvi.svcvehiculos.entities.Vehiculo;
+import com.sisvi.svcvehiculos.http.response.MantIngresoPorVehiculoResponse;
 import com.sisvi.svcvehiculos.http.response.MantSalidaPorVehiculoResponse;
 import com.sisvi.svcvehiculos.persistence.VehiculoRepository;
 
@@ -16,7 +18,7 @@ public class VehiculoServiceImpl implements PVehiculoService {
     private VehiculoRepository vehiculoRepository;
 
     @Autowired
-    private RMantSalidaService rMantSalidaService;
+    private RMantService rMantService;
 
     @Override
     public List<Vehiculo> obtenerTodosVehiculos() {
@@ -51,10 +53,10 @@ public class VehiculoServiceImpl implements PVehiculoService {
 
     @Override
     public MantSalidaPorVehiculoResponse obtenerMantenimientosSalidaPorVehiculo(Long idVehiculo) {
-        // Consultar vehiculo por id
+
         Vehiculo vehiculo = vehiculoRepository.findById(idVehiculo).orElse(null);
 
-        ResponseEntity<?> response = rMantSalidaService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo);
+        ResponseEntity<?> response = rMantService.obtenerMantenimientosSalidaPorVehiculo(idVehiculo);
 
         List<?> list = (List<?>) response.getBody();
 
@@ -62,6 +64,20 @@ public class VehiculoServiceImpl implements PVehiculoService {
                 .id(vehiculo.getId())
                 .placa(vehiculo.getPlaca())
                 .mantenimientosSalida(list)
+                .build();
+    }
+
+    @Override
+    public MantIngresoPorVehiculoResponse obtenerMantenimientosIngresoPorVehiculo(Long idVehiculo) {
+
+        Vehiculo vehiculo = vehiculoRepository.findById(idVehiculo).orElse(null);
+
+        List<MantIngresoDTO> mantenimientosIngreso = rMantService.obtenerMantenimientosIngresoPorVehiculo(idVehiculo);
+
+        return MantIngresoPorVehiculoResponse.builder()
+                .id(vehiculo.getId())
+                .placa(vehiculo.getPlaca())
+                .mantenimientosIngreso(mantenimientosIngreso)
                 .build();
     }
 
