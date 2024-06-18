@@ -31,5 +31,7 @@ public class Chofer {
     private String licenciaConducir;
     private String categoriaLicencia;
     private Date fechaVencimientoLicencia;
-    private boolean estado;
+    private Date fechaRegistro;
+    private Date fechaModificacion;
+    private Boolean estado;
 }
