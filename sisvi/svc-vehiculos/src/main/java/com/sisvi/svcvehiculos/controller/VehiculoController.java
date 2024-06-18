@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.sisvi.svcvehiculos.entities.Vehiculo;
+import com.sisvi.svcvehiculos.http.request.VehiculoRequest;
 import com.sisvi.svcvehiculos.service.PVehiculoService;
 
 @RestController
@@ -23,6 +25,22 @@ public class VehiculoController {
 
     @Autowired
     private PVehiculoService vehiculoService;
+
+    @PostMapping("/registrar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registrarVehiculo(@RequestBody VehiculoRequest vehiculoRequest) {
+        vehiculoService.registrarVehiculo(vehiculoRequest);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public void actualizarVehiculo(@PathVariable Long id, @RequestBody VehiculoRequest vehiculoRequest) {
+        vehiculoService.actualizarVehiculo(id, vehiculoRequest);
+    }
+
+    @PutMapping("/cambiar-estado/{id}")
+    public void cambiarEstadoVehiculo(@PathVariable Long id) {
+        vehiculoService.cambiarEstadoVehiculo(id);
+    }
 
     @GetMapping("/listar")
     public ResponseEntity<?> obtenerTodosVehiculos() {
@@ -34,12 +52,6 @@ public class VehiculoController {
     public ResponseEntity<?> obtenerVehiculoPorId(@PathVariable Long id) {
         Vehiculo vehiculo = vehiculoService.obtenerVehiculoPorId(id);
         return ResponseEntity.ok(vehiculo);
-    }
-
-    @PostMapping("/guardar")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void guardarVehiculo(@RequestBody Vehiculo vehiculo) {
-        vehiculoService.guardarVehiculo(vehiculo);
     }
 
     @DeleteMapping("/eliminar/{id}")
@@ -65,5 +77,5 @@ public class VehiculoController {
     public ResponseEntity<?> obtenerMantenimientosIngresoPorVehiculo(@PathVariable Long idVehiculo) {
         return ResponseEntity.ok(vehiculoService.obtenerMantenimientosIngresoPorVehiculo(idVehiculo));
     }
-    
+
 }
