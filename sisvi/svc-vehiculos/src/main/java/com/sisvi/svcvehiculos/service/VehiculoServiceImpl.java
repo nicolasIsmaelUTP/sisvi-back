@@ -1,5 +1,7 @@
 package com.sisvi.svcvehiculos.service;
 
+import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sisvi.svcvehiculos.client.RMantService;
 import com.sisvi.svcvehiculos.dto.MantIngresoDTO;
 import com.sisvi.svcvehiculos.entities.Vehiculo;
+import com.sisvi.svcvehiculos.http.request.VehiculoRequest;
 import com.sisvi.svcvehiculos.http.response.MantIngresoPorVehiculoResponse;
 import com.sisvi.svcvehiculos.http.response.MantSalidaPorVehiculoResponse;
 import com.sisvi.svcvehiculos.persistence.VehiculoRepository;
@@ -31,8 +34,59 @@ public class VehiculoServiceImpl implements PVehiculoService {
     }
 
     @Override
-    public Vehiculo guardarVehiculo(Vehiculo vehiculo) {
-        return vehiculoRepository.save(vehiculo);
+    public void registrarVehiculo(VehiculoRequest vehiculoRequest) {
+        vehiculoRepository.save(Vehiculo.builder()
+                .placa(vehiculoRequest.getPlaca())
+                .numMotor(vehiculoRequest.getNumMotor())
+                .numSerie(vehiculoRequest.getNumSerie())
+                .marca(vehiculoRequest.getMarca())
+                .modelo(vehiculoRequest.getModelo())
+                .anioFabricacion(vehiculoRequest.getAnioFabricacion())
+                .color(vehiculoRequest.getColor())
+                .kilometraje(vehiculoRequest.getKilometraje())
+                .tipoCombustible(vehiculoRequest.getTipoCombustible())
+                .transmision(vehiculoRequest.getTransmision())
+                .img(vehiculoRequest.getImg())
+                .estado(true)
+                .fechaRegistro(new Date())
+                .build());
+    }
+
+    @Override
+    public void actualizarVehiculo(Long id, VehiculoRequest vehiculoRequest) {
+        if (vehiculoRepository.existsById(id)) {
+            Vehiculo vehiculo = Vehiculo.builder()
+                    .id(id)
+                    .placa(vehiculoRequest.getPlaca())
+                    .numMotor(vehiculoRequest.getNumMotor())
+                    .numSerie(vehiculoRequest.getNumSerie())
+                    .marca(vehiculoRequest.getMarca())
+                    .modelo(vehiculoRequest.getModelo())
+                    .anioFabricacion(vehiculoRequest.getAnioFabricacion())
+                    .color(vehiculoRequest.getColor())
+                    .kilometraje(vehiculoRequest.getKilometraje())
+                    .tipoCombustible(vehiculoRequest.getTipoCombustible())
+                    .transmision(vehiculoRequest.getTransmision())
+                    .img(vehiculoRequest.getImg())
+                    .fechaModificacion(new Date())
+                    .build();
+
+            Vehiculo vehiculoDB = vehiculoRepository.findById(id).orElse(null);
+
+            for (Field field : vehiculo.getClass().getDeclaredFields()) {
+                field.setAccessible(true);
+                try {
+                    Object value = field.get(vehiculo);
+                    if (value != null) {
+                        field.set(vehiculoDB, value);
+                    }
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            vehiculoRepository.save(vehiculoDB);
+        }
     }
 
     @Override
@@ -79,6 +133,16 @@ public class VehiculoServiceImpl implements PVehiculoService {
                 .placa(vehiculo.getPlaca())
                 .mantenimientosIngreso(mantenimientosIngreso)
                 .build();
+    }
+
+    @Override
+    public void cambiarEstadoVehiculo(Long id) {
+        if (vehiculoRepository.existsById(id)) {
+            Vehiculo vehiculo = vehiculoRepository.findById(id).orElse(null);
+            vehiculo.setEstado(!vehiculo.getEstado());
+            vehiculo.setFechaModificacion(new Date());
+            vehiculoRepository.save(vehiculo);
+        }
     }
 
 }
