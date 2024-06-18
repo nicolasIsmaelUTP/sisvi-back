@@ -3,6 +3,7 @@ package com.sisvi.svcchoferes.service;
 import java.util.List;
 
 import com.sisvi.svcchoferes.entities.Chofer;
+import com.sisvi.svcchoferes.http.request.ChoferRequest;
 
 public interface PChoferService {
     
@@ -10,7 +11,11 @@ public interface PChoferService {
 
     Chofer obtenerChoferPorId(Long id);
 
-    Chofer guardarChofer(Chofer chofer);
+    void registrarChofer(ChoferRequest choferRequest);
+
+    void actualizarChofer(Long id, ChoferRequest choferRequest);
+
+    void cambiarEstadoChofer(Long id);
 
     void eliminarChoferPorId(Long id);
 
