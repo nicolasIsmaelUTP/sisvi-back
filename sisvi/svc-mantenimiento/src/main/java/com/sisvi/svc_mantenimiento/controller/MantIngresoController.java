@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sisvi.svc_mantenimiento.entities.MantenimientoIngreso;
+import com.sisvi.svc_mantenimiento.http.request.MantIngresoRequest;
 import com.sisvi.svc_mantenimiento.service.PMantIngresoService;
 
 @RestController
@@ -34,8 +35,13 @@ public class MantIngresoController {
 
     @PostMapping("/guardar")
     @ResponseStatus(HttpStatus.CREATED)
-    public void guardarMantenimientoIngreso(@RequestBody MantenimientoIngreso mantIngreso) {
-        mantIngresoService.guardarMantenimientoIngreso(mantIngreso);
+    public void guardarMantenimientoIngreso(@RequestBody MantIngresoRequest mantIngresoRequest) {
+        mantIngresoService.guardarMantenimientoIngreso(mantIngresoRequest);
+    }
+
+    @PutMapping("cambiar-estado/{id}")
+    public void cambiarEstadoMantIngreso(@PathVariable Long id){
+        mantIngresoService.cambiarEstadoMantenimientoIngreso(id);
     }
     
     @DeleteMapping("/eliminar/{id}")

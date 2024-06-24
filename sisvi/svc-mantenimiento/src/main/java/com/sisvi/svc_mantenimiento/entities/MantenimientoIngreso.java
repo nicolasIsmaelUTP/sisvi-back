@@ -25,7 +25,8 @@ public class MantenimientoIngreso {
     private Long idVehiculo;
     private Long idChofer;
     private Date fechaIngreso;
-    private int kilometrajeIngresado;
+    private Integer kilometrajeIngresado;
     private String observaciones;
-    private boolean estado;
+    private Date fechaActualizacion;
+    private Boolean estado;
 }
