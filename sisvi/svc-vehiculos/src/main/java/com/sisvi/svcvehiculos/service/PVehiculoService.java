@@ -15,11 +15,11 @@ public interface PVehiculoService {
 
     void cambiarEstadoVehiculo(Long id);
 
+    void eliminarVehiculoPorId(Long id);
+
     List<Vehiculo> obtenerTodosVehiculos();
 
     Vehiculo obtenerVehiculoPorId(Long id);
-
-    void eliminarVehiculoPorId(Long id);
 
     Vehiculo obtenerPorPlaca(String placa);
 
