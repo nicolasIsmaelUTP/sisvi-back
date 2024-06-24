@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
-import com.sisvi.svcrepuestos.entities.Repuesto;
+import com.sisvi.svcrepuestos.http.request.RepuestoRequest;
 import com.sisvi.svcrepuestos.service.PRepuestoService;
 
 @RestController
@@ -31,10 +32,20 @@ public class RepuestoController {
         return ResponseEntity.ok(repuestoService.obtenerRepuestoPorId(id));
     }
 
-    @PostMapping("/guardar")
+    @PostMapping("/registrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public void guardarRepuesto(@RequestBody Repuesto repuesto) {
-        repuestoService.guardarRepuesto(repuesto);
+    public void registrarRepuesto(@RequestBody RepuestoRequest repuestoRequest) {
+        repuestoService.crearRepuesto(repuestoRequest);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public void actualizarRepuesto(@PathVariable Long id, @RequestBody RepuestoRequest repuestoRequest) {
+        repuestoService.actualizarRepuesto(id, repuestoRequest);
+    }
+
+    @PutMapping("/cambiarEstado/{id}")
+    public void cambiarEstadoRepuesto(@PathVariable Long id) {
+        repuestoService.cambiarEstadoRepuesto(id);
     }
 
     @DeleteMapping("/eliminar/{id}")

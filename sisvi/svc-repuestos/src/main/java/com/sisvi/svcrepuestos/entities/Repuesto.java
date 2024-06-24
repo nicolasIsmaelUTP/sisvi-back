@@ -26,6 +26,8 @@ public class Repuesto {
     private String descripcion;
     private String fabricante;
     private Date fechaFabricacion;
-    private int cantidadStock;
-    private boolean estado;
+    private Integer cantidadStock;
+    private Date fechaCreacion;
+    private Date fechaActualizacion;
+    private Boolean estado;
 }
