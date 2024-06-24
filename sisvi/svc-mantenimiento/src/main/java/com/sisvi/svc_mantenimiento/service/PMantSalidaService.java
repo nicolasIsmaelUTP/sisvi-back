@@ -3,6 +3,7 @@ package com.sisvi.svc_mantenimiento.service;
 import java.util.List;
 
 import com.sisvi.svc_mantenimiento.entities.MantenimientoSalida;
+import com.sisvi.svc_mantenimiento.http.request.MantSalidaRequest;
 
 public interface PMantSalidaService {
     
@@ -10,7 +11,9 @@ public interface PMantSalidaService {
 
     MantenimientoSalida obtenerMantenimientoSalidaPorId(Long id);
 
-    MantenimientoSalida guardarMantenimientoSalida(MantenimientoSalida mantenimientoSalida);
+    void guardarMantenimientoSalida(MantSalidaRequest request);
+
+    void cambiarEstadoMantenimientoSalida(Long id);
 
     void eliminarMantenimientoSalidaPorId(Long id);
 

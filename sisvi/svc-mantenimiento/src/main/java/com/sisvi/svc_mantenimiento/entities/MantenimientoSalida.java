@@ -26,10 +26,11 @@ public class MantenimientoSalida {
     @OneToOne
     private MantenimientoIngreso mantenimientoIngreso;
     private Date fechaSalida;
-    private int nivelDanio;
-    private int nivelCombustible;
-    private int nivelAceite;
-    private int kilometrajeSalida;
+    private Integer nivelDanio;
+    private Integer nivelCombustible;
+    private Integer nivelAceite;
+    private Integer kilometrajeSalida;
     private String observaciones;
-    private boolean estado;
+    private Date fechaActualizacion;
+    private Boolean estado;
 }

@@ -47,5 +47,3 @@ INSERT INTO `mantenimiento_salida` (`estado`, `kilometraje_salida`, `nivel_aceit
 INSERT INTO `mantenimiento_salida` (`estado`, `kilometraje_salida`, `nivel_aceite`, `nivel_combustible`, `nivel_danio`, `fecha_salida`, `mantenimiento_ingreso_id`, `observaciones`) VALUES (1, 150500, 5, 7, 2, '2024-05-20', 10, 'Radiador y mangueras reemplazadas');
 
 INSERT INTO `mantenimiento_salida` (`estado`, `kilometraje_salida`, `nivel_aceite`, `nivel_combustible`, `nivel_danio`, `fecha_salida`, `mantenimiento_ingreso_id`, `observaciones`) VALUES (1, 40500, 5, 8, 0, '2024-05-23', 11, 'Filtro de aire cambiado');
-
-INSERT INTO `mantenimiento_salida` (`estado`, `kilometraje_salida`, `nivel_aceite`, `nivel_combustible`, `nivel_danio`, `fecha_salida`, `mantenimiento_ingreso_id`, `observaciones`) VALUES (1, 40500, 5, 8, 0, '2024-05-24', 12, 'Sistema de escape revisado');
