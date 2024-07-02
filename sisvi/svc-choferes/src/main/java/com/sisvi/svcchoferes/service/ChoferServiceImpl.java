@@ -23,43 +23,29 @@ public class ChoferServiceImpl implements PChoferService {
     }
 
     @Override
+    public List<Chofer> obtenerChoferesActivos() {
+        return choferRepository.findByEstado(true);
+    }
+
+    @Override
     public Chofer obtenerChoferPorId(Long id) {
         return choferRepository.findById(id).orElse(null);
     }
 
     @Override
     public void registrarChofer(ChoferRequest choferRequest) {
-        choferRepository.save(Chofer.builder()
-                .dni(choferRequest.getDni())
-                .primerNombre(choferRequest.getPrimerNombre())
-                .segundoNombre(choferRequest.getSegundoNombre())
-                .apellidoPaterno(choferRequest.getApellidoPaterno())
-                .apellidoMaterno(choferRequest.getApellidoMaterno())
-                .telefono(choferRequest.getTelefono())
-                .licenciaConducir(choferRequest.getLicenciaConducir())
-                .categoriaLicencia(choferRequest.getCategoriaLicencia())
-                .fechaVencimientoLicencia(choferRequest.getFechaVencimientoLicencia())
-                .fechaRegistro(new Date())
-                .estado(true)
-                .build());
+        Chofer chofer = construirChofer(choferRequest);
+        chofer.setFechaRegistro(new Date());
+        chofer.setEstado(true);
+        choferRepository.save(chofer);
     }
 
     @Override
     public void actualizarChofer(Long id, ChoferRequest choferRequest) {
         if (choferRepository.existsById(id)) {
-            Chofer chofer = Chofer.builder()
-                    .id(id)
-                    .dni(choferRequest.getDni())
-                    .primerNombre(choferRequest.getPrimerNombre())
-                    .segundoNombre(choferRequest.getSegundoNombre())
-                    .apellidoPaterno(choferRequest.getApellidoPaterno())
-                    .apellidoMaterno(choferRequest.getApellidoMaterno())
-                    .telefono(choferRequest.getTelefono())
-                    .licenciaConducir(choferRequest.getLicenciaConducir())
-                    .categoriaLicencia(choferRequest.getCategoriaLicencia())
-                    .fechaVencimientoLicencia(choferRequest.getFechaVencimientoLicencia())
-                    .fechaModificacion(new Date())
-                    .build();
+            Chofer chofer = construirChofer(choferRequest);
+            chofer.setId(id);
+            chofer.setFechaModificacion(new Date());
 
             Chofer choferDB = choferRepository.findById(id).orElse(null);
 
@@ -79,6 +65,20 @@ public class ChoferServiceImpl implements PChoferService {
         }
     }
 
+    private Chofer construirChofer(ChoferRequest choferRequest) {
+        return Chofer.builder()
+                .dni(choferRequest.getDni())
+                .primerNombre(choferRequest.getPrimerNombre())
+                .segundoNombre(choferRequest.getSegundoNombre())
+                .apellidoPaterno(choferRequest.getApellidoPaterno())
+                .apellidoMaterno(choferRequest.getApellidoMaterno())
+                .telefono(choferRequest.getTelefono())
+                .licenciaConducir(choferRequest.getLicenciaConducir())
+                .categoriaLicencia(choferRequest.getCategoriaLicencia())
+                .fechaVencimientoLicencia(choferRequest.getFechaVencimientoLicencia())
+                .build();
+    }
+
     @Override
     public void cambiarEstadoChofer(Long id) {
         if (choferRepository.existsById(id)) {
@@ -90,30 +90,13 @@ public class ChoferServiceImpl implements PChoferService {
     }
 
     @Override
-    public void eliminarChoferPorId(Long id) {
-        choferRepository.deleteById(id);
-    }
-
-    @Override
     public Chofer obtenerPorDni(String dni) {
-        List<Chofer> choferes = (List<Chofer>) choferRepository.findAll();
-        for (Chofer chofer : choferes) {
-            if (chofer.getDni().equals(dni)) {
-                return chofer;
-            }
-        }
-        return null;
+        return choferRepository.findByDni(dni);
     }
 
     @Override
     public Chofer obtenerPorLicenciaConducir(String licenciaConducir) {
-        List<Chofer> choferes = (List<Chofer>) choferRepository.findAll();
-        for (Chofer chofer : choferes) {
-            if (chofer.getLicenciaConducir().equals(licenciaConducir)) {
-                return chofer;
-            }
-        }
-        return null;
+        return choferRepository.findByLicenciaConducir(licenciaConducir);
     }
 
 }

@@ -3,7 +3,6 @@ package com.sisvi.svcchoferes.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +27,11 @@ public class ChoferController {
         return ResponseEntity.ok(choferService.obtenerTodosChoferes());
     }
 
+    @GetMapping("/listar-activos")
+    public ResponseEntity<?> obtenerChoferesActivos() {
+        return ResponseEntity.ok(choferService.obtenerChoferesActivos());
+    }
+
     @GetMapping("/listar/{id}")
     public ResponseEntity<?> obtenerChoferPorId(@PathVariable Long id) {
         return ResponseEntity.ok(choferService.obtenerChoferPorId(id));
@@ -47,11 +51,6 @@ public class ChoferController {
     @PutMapping("/cambiar-estado/{id}")
     public void cambiarEstadoChofer(@PathVariable Long id) {
         choferService.cambiarEstadoChofer(id);
-    }
-
-    @DeleteMapping("/eliminar/{id}")
-    public void eliminarChoferPorId(@PathVariable Long id) {
-        choferService.eliminarChoferPorId(id);
     }
 
     // Obtener por DNI

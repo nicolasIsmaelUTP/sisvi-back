@@ -9,6 +9,8 @@ public interface PChoferService {
     
     List<Chofer> obtenerTodosChoferes();
 
+    List<Chofer> obtenerChoferesActivos();
+
     Chofer obtenerChoferPorId(Long id);
 
     void registrarChofer(ChoferRequest choferRequest);
@@ -16,8 +18,6 @@ public interface PChoferService {
     void actualizarChofer(Long id, ChoferRequest choferRequest);
 
     void cambiarEstadoChofer(Long id);
-
-    void eliminarChoferPorId(Long id);
 
     Chofer obtenerPorDni(String dni);
 
