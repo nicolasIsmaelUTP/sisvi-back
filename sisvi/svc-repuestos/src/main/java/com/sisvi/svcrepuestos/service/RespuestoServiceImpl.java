@@ -11,7 +11,7 @@ import com.sisvi.svcrepuestos.http.request.RepuestoRequest;
 import com.sisvi.svcrepuestos.persistence.RepuestoRepository;
 
 @Service
-public class RespuestoServiceImpl implements PRepuestoService{
+public class RespuestoServiceImpl implements PRepuestoService {
 
     @Autowired
     private RepuestoRepository repuestoRepository;
@@ -22,40 +22,39 @@ public class RespuestoServiceImpl implements PRepuestoService{
     }
 
     @Override
+    public List<Repuesto> obtenerRepuestosActivos() {
+        return repuestoRepository.findByEstado(true);
+    }
+
+    @Override
+    public List<Repuesto> obtenerRepuestosInactivos() {
+        return repuestoRepository.findByEstado(false);
+    }
+
+    @Override
     public Repuesto obtenerRepuestoPorId(Long id) {
         return repuestoRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void eliminarRepuestoPorId(Long id) {
-        repuestoRepository.deleteById(id);
+    public Repuesto obtenerPorCodigoInterno(String codigoInterno) {
+        return repuestoRepository.findByCodigoInterno(codigoInterno);
     }
 
     @Override
     public void crearRepuesto(RepuestoRequest repuestoRequest) {
-        repuestoRepository.save(Repuesto.builder()
-                .codigoInterno(repuestoRequest.getCodigoInterno())
-                .descripcion(repuestoRequest.getDescripcion())
-                .fabricante(repuestoRequest.getFabricante())
-                .fechaFabricacion(repuestoRequest.getFechaFabricacion())
-                .cantidadStock(repuestoRequest.getCantidadStock())
-                .fechaCreacion(new Date())
-                .estado(true)
-                .build());
+        Repuesto repuesto = construirRepuesto(repuestoRequest);
+        repuesto.setFechaCreacion(new Date());
+        repuesto.setEstado(true);
+        repuestoRepository.save(repuesto);
     }
 
     @Override
     public void actualizarRepuesto(Long id, RepuestoRequest repuestoRequest) {
-        if (repuestoRepository.existsById(id)){
-            Repuesto repuesto = Repuesto.builder()
-                    .id(id)
-                    .codigoInterno(repuestoRequest.getCodigoInterno())
-                    .descripcion(repuestoRequest.getDescripcion())
-                    .fabricante(repuestoRequest.getFabricante())
-                    .fechaFabricacion(repuestoRequest.getFechaFabricacion())
-                    .cantidadStock(repuestoRequest.getCantidadStock())
-                    .fechaActualizacion(new Date())
-                    .build();
+        if (repuestoRepository.existsById(id)) {
+            Repuesto repuesto = construirRepuesto(repuestoRequest);
+            repuesto.setId(id);
+            repuesto.setFechaActualizacion(new Date());
 
             Repuesto repuestoDB = repuestoRepository.findById(id).orElse(null);
 
@@ -75,6 +74,16 @@ public class RespuestoServiceImpl implements PRepuestoService{
         }
     }
 
+    private Repuesto construirRepuesto(RepuestoRequest repuestoRequest) {
+        return Repuesto.builder()
+                .codigoInterno(repuestoRequest.getCodigoInterno())
+                .descripcion(repuestoRequest.getDescripcion())
+                .fabricante(repuestoRequest.getFabricante())
+                .fechaFabricacion(repuestoRequest.getFechaFabricacion())
+                .cantidadStock(repuestoRequest.getCantidadStock())
+                .build();   
+    }
+
     @Override
     public void cambiarEstadoRepuesto(Long id) {
         if (repuestoRepository.existsById(id)) {
@@ -84,5 +93,4 @@ public class RespuestoServiceImpl implements PRepuestoService{
             repuestoRepository.save(repuesto);
         }
     }
-    
 }

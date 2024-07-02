@@ -7,8 +7,14 @@ import com.sisvi.svcrepuestos.http.request.RepuestoRequest;
 public interface PRepuestoService {
 
     List<Repuesto> obtenerTodosRepuestos();
+
+    List<Repuesto> obtenerRepuestosActivos();
+
+    List<Repuesto> obtenerRepuestosInactivos();
     
     Repuesto obtenerRepuestoPorId(Long id);
+
+    Repuesto obtenerPorCodigoInterno(String codigoInterno);
     
     void crearRepuesto(RepuestoRequest repuestoRequest);
 
@@ -16,5 +22,4 @@ public interface PRepuestoService {
 
     void cambiarEstadoRepuesto(Long id);
 
-    void eliminarRepuestoPorId(Long id);
 } 
