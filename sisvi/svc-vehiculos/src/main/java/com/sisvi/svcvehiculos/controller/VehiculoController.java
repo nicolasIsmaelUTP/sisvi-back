@@ -1,9 +1,6 @@
 package com.sisvi.svcvehiculos.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,19 +41,22 @@ public class VehiculoController {
 
     @GetMapping("/listar")
     public ResponseEntity<?> obtenerTodosVehiculos() {
-        List<Vehiculo> vehiculos = vehiculoService.obtenerTodosVehiculos();
-        return ResponseEntity.ok(vehiculos);
+        return ResponseEntity.ok(vehiculoService.obtenerTodosVehiculos());
     }
 
     @GetMapping("/listar/{id}")
     public ResponseEntity<?> obtenerVehiculoPorId(@PathVariable Long id) {
-        Vehiculo vehiculo = vehiculoService.obtenerVehiculoPorId(id);
-        return ResponseEntity.ok(vehiculo);
+        return ResponseEntity.ok(vehiculoService.obtenerVehiculoPorId(id));
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public void eliminarVehiculoPorId(@PathVariable Long id) {
-        vehiculoService.eliminarVehiculoPorId(id);
+    @GetMapping("/listar-activos")
+    public ResponseEntity<?> obtenerVehiculosActivos() {
+        return ResponseEntity.ok(vehiculoService.obtenerVehiculosActivos());
+    }
+
+    @GetMapping("/listar-inactivos")
+    public ResponseEntity<?> obtenerVehiculosInactivos() {
+        return ResponseEntity.ok(vehiculoService.obtenerVehiculosInactivos());
     }
 
     // Obtener vehiculo por placa

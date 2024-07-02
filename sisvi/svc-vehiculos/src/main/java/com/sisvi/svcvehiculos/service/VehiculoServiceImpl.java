@@ -29,47 +29,39 @@ public class VehiculoServiceImpl implements PVehiculoService {
     }
 
     @Override
+    public List<Vehiculo> obtenerVehiculosActivos() {
+        return vehiculoRepository.findByEstado(true);
+    }
+
+    @Override
+    public List<Vehiculo> obtenerVehiculosInactivos() {
+        return vehiculoRepository.findByEstado(false);
+    }
+
+    @Override
     public Vehiculo obtenerVehiculoPorId(Long id) {
         return vehiculoRepository.findById(id).orElse(null);
     }
 
     @Override
+    public Vehiculo obtenerPorPlaca(String placa) {
+        return vehiculoRepository.findByPlaca(placa);
+    }
+
+    @Override
     public void registrarVehiculo(VehiculoRequest vehiculoRequest) {
-        vehiculoRepository.save(Vehiculo.builder()
-                .placa(vehiculoRequest.getPlaca())
-                .numMotor(vehiculoRequest.getNumMotor())
-                .numSerie(vehiculoRequest.getNumSerie())
-                .marca(vehiculoRequest.getMarca())
-                .modelo(vehiculoRequest.getModelo())
-                .anioFabricacion(vehiculoRequest.getAnioFabricacion())
-                .color(vehiculoRequest.getColor())
-                .kilometraje(vehiculoRequest.getKilometraje())
-                .tipoCombustible(vehiculoRequest.getTipoCombustible())
-                .transmision(vehiculoRequest.getTransmision())
-                .img(vehiculoRequest.getImg())
-                .estado(true)
-                .fechaRegistro(new Date())
-                .build());
+        Vehiculo vehiculo = construirVehiculo(vehiculoRequest);
+        vehiculo.setFechaRegistro(new Date());
+        vehiculo.setEstado(true);
+        vehiculoRepository.save(vehiculo);
     }
 
     @Override
     public void actualizarVehiculo(Long id, VehiculoRequest vehiculoRequest) {
         if (vehiculoRepository.existsById(id)) {
-            Vehiculo vehiculo = Vehiculo.builder()
-                    .id(id)
-                    .placa(vehiculoRequest.getPlaca())
-                    .numMotor(vehiculoRequest.getNumMotor())
-                    .numSerie(vehiculoRequest.getNumSerie())
-                    .marca(vehiculoRequest.getMarca())
-                    .modelo(vehiculoRequest.getModelo())
-                    .anioFabricacion(vehiculoRequest.getAnioFabricacion())
-                    .color(vehiculoRequest.getColor())
-                    .kilometraje(vehiculoRequest.getKilometraje())
-                    .tipoCombustible(vehiculoRequest.getTipoCombustible())
-                    .transmision(vehiculoRequest.getTransmision())
-                    .img(vehiculoRequest.getImg())
-                    .fechaModificacion(new Date())
-                    .build();
+            Vehiculo vehiculo = construirVehiculo(vehiculoRequest);
+            vehiculo.setId(id);
+            vehiculo.setFechaModificacion(new Date());
 
             Vehiculo vehiculoDB = vehiculoRepository.findById(id).orElse(null);
 
@@ -89,20 +81,20 @@ public class VehiculoServiceImpl implements PVehiculoService {
         }
     }
 
-    @Override
-    public void eliminarVehiculoPorId(Long id) {
-        vehiculoRepository.deleteById(id);
-    }
-
-    @Override
-    public Vehiculo obtenerPorPlaca(String placa) {
-        List<Vehiculo> vehiculos = (List<Vehiculo>) vehiculoRepository.findAll();
-        for (Vehiculo vehiculo : vehiculos) {
-            if (vehiculo.getPlaca().equals(placa)) {
-                return vehiculo;
-            }
-        }
-        return null;
+    private Vehiculo construirVehiculo(VehiculoRequest vehiculoRequest) {
+        return Vehiculo.builder()
+                .placa(vehiculoRequest.getPlaca())
+                .numMotor(vehiculoRequest.getNumMotor())
+                .numSerie(vehiculoRequest.getNumSerie())
+                .marca(vehiculoRequest.getMarca())
+                .modelo(vehiculoRequest.getModelo())
+                .anioFabricacion(vehiculoRequest.getAnioFabricacion())
+                .color(vehiculoRequest.getColor())
+                .kilometraje(vehiculoRequest.getKilometraje())
+                .tipoCombustible(vehiculoRequest.getTipoCombustible())
+                .transmision(vehiculoRequest.getTransmision())
+                .img(vehiculoRequest.getImg())
+                .build();
     }
 
     @Override

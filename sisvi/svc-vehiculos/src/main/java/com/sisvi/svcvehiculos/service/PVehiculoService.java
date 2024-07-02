@@ -9,15 +9,17 @@ import com.sisvi.svcvehiculos.http.response.MantSalidaPorVehiculoResponse;
 
 public interface PVehiculoService {
 
+    List<Vehiculo> obtenerTodosVehiculos();
+    
+    List<Vehiculo> obtenerVehiculosActivos();
+
+    List<Vehiculo> obtenerVehiculosInactivos();
+
     void registrarVehiculo(VehiculoRequest vehiculoRequest);
 
     void actualizarVehiculo(Long id, VehiculoRequest vehiculoRequest);
 
     void cambiarEstadoVehiculo(Long id);
-
-    void eliminarVehiculoPorId(Long id);
-
-    List<Vehiculo> obtenerTodosVehiculos();
 
     Vehiculo obtenerVehiculoPorId(Long id);
 
