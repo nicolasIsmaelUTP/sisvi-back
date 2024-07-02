@@ -32,6 +32,11 @@ public class ChoferController {
         return ResponseEntity.ok(choferService.obtenerChoferesActivos());
     }
 
+    @GetMapping("/listar-inactivos")
+    public ResponseEntity<?> obtenerChoferesInactivos() {
+        return ResponseEntity.ok(choferService.obtenerChoferesInactivos());
+    }
+
     @GetMapping("/listar/{id}")
     public ResponseEntity<?> obtenerChoferPorId(@PathVariable Long id) {
         return ResponseEntity.ok(choferService.obtenerChoferPorId(id));

@@ -11,6 +11,8 @@ public interface PChoferService {
 
     List<Chofer> obtenerChoferesActivos();
 
+    List<Chofer> obtenerChoferesInactivos();
+
     Chofer obtenerChoferPorId(Long id);
 
     void registrarChofer(ChoferRequest choferRequest);

@@ -28,6 +28,11 @@ public class ChoferServiceImpl implements PChoferService {
     }
 
     @Override
+    public List<Chofer> obtenerChoferesInactivos() {
+        return choferRepository.findByEstado(false);
+    }
+
+    @Override
     public Chofer obtenerChoferPorId(Long id) {
         return choferRepository.findById(id).orElse(null);
     }
