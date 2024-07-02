@@ -23,6 +23,11 @@ public class VehiculoController {
     @Autowired
     private PVehiculoService vehiculoService;
 
+    @GetMapping("/existe-placa/{placa}")
+    public ResponseEntity<?> existeVehiculoPorPlaca(@PathVariable String placa) {
+        return ResponseEntity.ok(vehiculoService.existeVehiculoPorPlaca(placa));
+    }
+
     @PostMapping("/registrar")
     @ResponseStatus(HttpStatus.CREATED)
     public void registrarVehiculo(@RequestBody VehiculoRequest vehiculoRequest) {

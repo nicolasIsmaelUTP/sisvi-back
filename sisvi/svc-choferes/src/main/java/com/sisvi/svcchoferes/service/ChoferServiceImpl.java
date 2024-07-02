@@ -18,6 +18,11 @@ public class ChoferServiceImpl implements PChoferService {
     private ChoferRepository choferRepository;
 
     @Override
+    public Boolean existeChoferPorDni(String dni) {
+        return choferRepository.findByDni(dni) != null;
+    }
+
+    @Override
     public List<Chofer> obtenerTodosChoferes() {
         return (List<Chofer>) choferRepository.findAll();
     }

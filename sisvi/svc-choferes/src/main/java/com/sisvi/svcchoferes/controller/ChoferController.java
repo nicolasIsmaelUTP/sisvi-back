@@ -22,6 +22,11 @@ public class ChoferController {
     @Autowired
     private PChoferService choferService;
 
+    @GetMapping("/existe-dni/{dni}")
+    public ResponseEntity<?> existeChoferPorDni(@PathVariable String dni) {
+        return ResponseEntity.ok(choferService.existeChoferPorDni(dni));
+    }
+
     @GetMapping("/listar")
     public ResponseEntity<?> obtenerTodosChoferes() {
         return ResponseEntity.ok(choferService.obtenerTodosChoferes());

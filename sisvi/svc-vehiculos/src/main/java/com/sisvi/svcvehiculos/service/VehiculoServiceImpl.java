@@ -24,6 +24,11 @@ public class VehiculoServiceImpl implements PVehiculoService {
     private RMantService rMantService;
 
     @Override
+    public Boolean existeVehiculoPorPlaca(String placa) {
+        return vehiculoRepository.findByPlaca(placa) != null;
+    }
+
+    @Override
     public List<Vehiculo> obtenerTodosVehiculos() {
         return (List<Vehiculo>) vehiculoRepository.findAll();
     }

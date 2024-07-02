@@ -6,6 +6,7 @@ import com.sisvi.svcchoferes.entities.Chofer;
 import com.sisvi.svcchoferes.http.request.ChoferRequest;
 
 public interface PChoferService {
+    Boolean existeChoferPorDni(String dni);
     
     List<Chofer> obtenerTodosChoferes();
 

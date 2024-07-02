@@ -8,6 +8,7 @@ import com.sisvi.svcvehiculos.http.response.MantIngresoPorVehiculoResponse;
 import com.sisvi.svcvehiculos.http.response.MantSalidaPorVehiculoResponse;
 
 public interface PVehiculoService {
+    Boolean existeVehiculoPorPlaca(String placa);
 
     List<Vehiculo> obtenerTodosVehiculos();
     
