@@ -25,6 +25,7 @@
 		<module>svc-repuestos</module>
 		<module>svc-mantenimiento</module>
 		<module>svc-parametros</module>
+		<module>svc-viajes</module>
 	</modules>
 
 	<properties>
