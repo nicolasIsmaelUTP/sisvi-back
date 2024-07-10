@@ -26,6 +26,7 @@
 		<module>svc-mantenimiento</module>
 		<module>svc-parametros</module>
 		<module>svc-viajes</module>
+		<module>svc-infracciones</module>
 	</modules>
 
 	<properties>
