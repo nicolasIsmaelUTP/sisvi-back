@@ -36,3 +36,7 @@ spring:
             uri: http://localhost:8068
             predicates:
               - Path=/api/viajes/**
+          - id: infracciones
+            uri: http://localhost:8062
+            predicates:
+              - Path=/api/**
