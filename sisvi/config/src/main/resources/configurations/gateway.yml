@@ -12,6 +12,10 @@ spring:
     gateway:
       mvc:
         routes:
+          - id: infracciones
+            uri: http://localhost:8062
+            predicates:
+              - Path=/api/infracciones/**
           - id: vehiculos
             uri: http://localhost:8063
             predicates:
@@ -36,7 +40,3 @@ spring:
             uri: http://localhost:8068
             predicates:
               - Path=/api/averias/**
-          - id: infracciones
-            uri: http://localhost:8062
-            predicates:
-              - Path=/api/infracciones/**
